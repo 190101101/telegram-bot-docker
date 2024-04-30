@@ -1,0 +1,21 @@
+mkdir telegram-bot-docker
+cd telegram-bot-docker
+npm init -y
+
+npm install node-telegram-bot-api
+
+
+FROM node:14
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+CMD ["node", "index.js"]
+
+
+docker build -t telegram-bot-docker .
+docker run -d telegram-bot-docker
